@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminHistoryController;
 use App\Http\Controllers\Admin\AdminCarRepairHistoryController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\AdminHelpController;
+use App\Http\Controllers\Admin\EvaluatorVehicleMasterListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
