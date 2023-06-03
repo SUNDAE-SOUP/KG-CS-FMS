@@ -11,4 +11,8 @@ class UserDashboardController extends Controller
 
         return view('components/user/section/user-dashboard');
     }
+    public function send(){
+
+       
+    }
 }

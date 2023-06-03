@@ -31,7 +31,12 @@ Route::get('/', function () {
 
 
 //routes for the admin 
+
+// Route::post('/testregister', [TestingController::class, 'update2'])->name('testregister');
+
+
 Route::middleware(['auth'])->controller(AdminDashboardController::class)->group(function () {
+    
     Route::get('/admin/dashboard', "index");
 });
 

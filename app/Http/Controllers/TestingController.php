@@ -1,10 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class TestingController extends Controller
 {
@@ -21,6 +30,39 @@ class TestingController extends Controller
     public function testing()
     {
         return view('testingsignup');
+    }
+
+
+    public function update(Request $request)
+    {
+    $existingUser = User::where('employee_id', $request->employee_code)->first();
+
+        // Update the existing user's details
+        $existingUser->email = $request->email;
+        $existingUser->password = Hash::make($request->password);
+        $existingUser->save();
+
+        $user = User::create([
+            'name' => $request->name,
+            'employee_code' => $request->employee_code,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+    
+    }
+    public function update2(Request $request)
+    {
+        $existingUser = User::where('employee_id', $request->employee_code)->first();
+
+        if ($existingUser) {
+            $existingUser->email = $request->email;
+            $existingUser->password = Hash::make($request->password);
+            $existingUser->save();
+
+            return response()->json(['message' => 'User details updated successfully'], 200);
+        }
+
+        return response()->json(['message' => 'User not found'], 404);
     }
 
     /**
@@ -73,11 +115,7 @@ class TestingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+ 
     /**
      * Remove the specified resource from storage.
      *

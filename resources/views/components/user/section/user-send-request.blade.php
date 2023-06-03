@@ -4,11 +4,11 @@
         <div class="sendRequest">
             <div class="sendRequestHeader">
                 <div class="label">Name:</div>
-                <div>Rhejoel Joson</div>
+                <div>{{auth()->user()->name}}</div>
                 <div class="label"></div>
                 <div></div>
                 <div class="label">Plate#:</div>
-                <div>NCI4421</div>
+                <div>NCI4421 {{auth()->user()->vehicle_id}}</div>
                 <div class="label">Engine#:</div>
                 <div>3NRX954321</div>
                 <div class="label">Year Model:</div>
@@ -55,6 +55,8 @@
                     <div class="input">
                         <label name="quotation">Quotation Amount</label>
                         <input type="number" name="quotation">
+                        <label name="shop_name">Shop Name</label>
+                        <input type="text" name="shop_name">
                     </div>
                     <div class="input">
                         <label for="file1">File upload</label>
